@@ -1,6 +1,9 @@
 // classe que vai conter a lógica dos dados
 // Como os dados serão estruturados - responsável por fazer
 // a lógica dos dados/ guardar esses dados;
+
+import { isExpressionWithTypeArguments } from "typescript"
+
  
 export class Favorites{
   constructor(root){
@@ -32,7 +35,28 @@ export class Favorites{
 
     this.entries = entries
   }
+
+  // higher order functions
+  // O filter diz o seguinte: essa função que vc está rodando
+  // para esse usuário passado como parâmetro - se a lógica
+  // passada na função retornar falso, o usuário em questão será removido.
+
+    // se o filter retornar verdadeiro, ele coloca o usuário dentro
+    // do novo array criado pelo filter, se ele retornar falso,
+    // ele NÃO coloca o usuário passado como parâmetro dentro do 
+    // novo array criado pelo filter.
+
+  delete(user){
+    const filteredEntries = this.entries.filter((entry) => {
+    entry.login !== user.login })
+  }
  
+
+  // se o login da entrada for igual ao login do usuário passado
+  // como parâmetro, esse usuário não será adicionado no novo array
+  // criado pelo filter; se o login da entrada for diferente do
+  // login do usuário passado como parâmetro, esse usuário
+  // será adicionado ao novo array criado pelo método filter.
 }
 
 
@@ -65,7 +89,12 @@ export class FavoritesView extends Favorites{
    row.querySelector('.repositories').textContent = user.public_repos
    row.querySelector('.followers').textContent = user.followers
 
-
+   row.querySelector('.remove').onclick = () => {
+    const isOk = confirm('Tem certeza de que deseja deletar a linha?')
+    if(isOk){
+      this.delete(user)
+    }
+   }
 
 
 
