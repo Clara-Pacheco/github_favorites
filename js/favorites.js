@@ -1,3 +1,20 @@
+export class GithubUser {
+  static search(username){
+    const endpoint = `https://api.github.com/users/${username}`
+
+    return fetch(endpoint)
+    .then(data => data.json())
+    .then(({login,name,public_repos,followers}) => ({
+        login,
+        name,
+        public_repos,
+        followers
+      }))
+  }
+}
+
+// classe com uma função 'static' não pode ser instanciada
+
 // classe que vai conter a lógica dos dados
 // Como os dados serão estruturados - responsável por fazer
 // a lógica dos dados/ guardar esses dados;
@@ -9,27 +26,10 @@ export class Favorites{
   }
 
   load() {
-    const entries = [
-      {
-      login: 'maykbrito',
-      name: "Mayk Brito",
-      public_repos: '103',
-      followers: '13.000'
-      },
-      {
-      login: 'diego3g',
-      name: "Diego Fernandes",
-      public_repos: '60',
-      followers: '27.100'
-      },
-      {
-      login: 'Clara-Pacheco',
-      name: "Clara Pacheco",
-      public_repos: '84',
-      followers: '61'
-      }
-    ]
 
+    const entries = JSON.parse(localStorage.getItem('@github-favorites: ')) || []
+
+    console.log(entries)
     this.entries = entries
   }
 
@@ -44,9 +44,9 @@ export class Favorites{
     // novo array criado pelo filter.
 
   delete(user){
-    console.log(user)
+    
     const filteredEntries = this.entries.filter(entry => entry.login !== user.login )
-    console.log(filteredEntries)
+    
     this.entries = filteredEntries
     this.update()
   }
