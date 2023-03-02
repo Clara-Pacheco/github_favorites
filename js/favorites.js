@@ -23,9 +23,6 @@ export class Favorites{
   constructor(root){
     this.root = document.querySelector('root')
     this.load()
-
-    GithubUser.search('Clara-Pacheco').then(user => console.log(user))
-    GithubUser.search('LeandroDukievicz').then(user => console.log(user))
   }
 
   load() {
@@ -36,9 +33,26 @@ export class Favorites{
     this.entries = entries
   }
 
+  save() {
+    localStorage.setItem('@github-favorites: ', JSON.stringify(this.entries))
+  }
+
   async add(username) {
+    try {
     const githubUser = await GithubUser.search(username)
-    console.log(githubUser)
+    
+    if(githubUser.login === undefined) {
+      throw new Error('Usuário não encontrado!')
+    }
+
+    this.entries = [githubUser, ...this.entries]  // spread operator
+    this.update()
+    this.save()
+
+    }catch(error){
+      alert(error.message)
+    }
+   
   }
 
   // higher order functions
