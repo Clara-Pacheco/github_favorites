@@ -23,6 +23,9 @@ export class Favorites{
   constructor(root){
     this.root = document.querySelector('root')
     this.load()
+
+    GithubUser.search('Clara-Pacheco').then(user => console.log(user))
+    GithubUser.search('LeandroDukievicz').then(user => console.log(user))
   }
 
   load() {
@@ -31,6 +34,11 @@ export class Favorites{
 
     console.log(entries)
     this.entries = entries
+  }
+
+  async add(username) {
+    const githubUser = await GithubUser.search(username)
+    console.log(githubUser)
   }
 
   // higher order functions
@@ -69,6 +77,16 @@ export class FavoritesView extends Favorites{
     this.tbody = document.querySelector('tbody')
 
     this.update()
+    this.onadd()
+  }
+
+  onadd(){
+    const addButton = document.querySelector('.search button')
+    addButton.onclick = () => {
+      const value = document.querySelector('.search input').value
+
+      this.add(value)
+    }
   }
 
   update(){
