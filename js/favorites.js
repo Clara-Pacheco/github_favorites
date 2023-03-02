@@ -1,9 +1,6 @@
 // classe que vai conter a lógica dos dados
 // Como os dados serão estruturados - responsável por fazer
 // a lógica dos dados/ guardar esses dados;
-
-import { isExpressionWithTypeArguments } from "typescript"
-
  
 export class Favorites{
   constructor(root){
@@ -47,10 +44,12 @@ export class Favorites{
     // novo array criado pelo filter.
 
   delete(user){
-    const filteredEntries = this.entries.filter((entry) => {
-    entry.login !== user.login })
+    console.log(user)
+    const filteredEntries = this.entries.filter(entry => entry.login !== user.login )
+    console.log(filteredEntries)
+    this.entries = filteredEntries
+    this.update()
   }
- 
 
   // se o login da entrada for igual ao login do usuário passado
   // como parâmetro, esse usuário não será adicionado no novo array
@@ -76,8 +75,9 @@ export class FavoritesView extends Favorites{
    this.removeAllTr()
 
    this.entries.forEach(user => {
+   
    const row = this.createRow()
-
+   
    /*recebemos a estrutura html criada com o createRow e, com
    a DOM, iremos modificar os dados dessa estrutura */
 
