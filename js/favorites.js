@@ -39,6 +39,17 @@ export class Favorites{
 
   async add(username) {
     try {
+
+    const userExists = this.entries.find(entry => entry.login === username)
+
+    // Se a condição do método find retornar verdadeiro, ele pega essa entrada
+    // e retorna como um objeto.
+
+    if(userExists){
+      throw new Error('Usuário já cadastrado')
+    }
+
+
     const githubUser = await GithubUser.search(username)
     
     if(githubUser.login === undefined) {
