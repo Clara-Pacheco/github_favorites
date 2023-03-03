@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/github/repo-size/Clara-Pacheco/github_favorites"/>&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/github/languages/count/Clara-Pacheco/github_favorites"/>
 
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fc3977f2-2fb9-4b6b-b7df-4992d9b5f812/deploy-status)](https://app.netlify.com/sites/githubfmyavorites/deploys)
 
 </div>
 
@@ -78,7 +78,7 @@ no decorrer do programa <b>Explorer</b>.
 
 🕛 **Status:** Concluído✔️
 
-🌎 **Result Preview:** 
+🌎 **Result Preview:** https://githubfmyavorites.netlify.app/
 
 <div align="center">
 Feito com 💜 por Clara 🚀
