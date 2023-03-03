@@ -43,7 +43,7 @@ Principais pontos abordados nesse desafio:
 
 O resultado final desse desafio deve ser algo em torno de:
 
-![Project´s preview]()
+![Project´s preview](https://github.com/Clara-Pacheco/github_favorites/blob/main/assets/project-preview.png)
 
 <br>
 
